@@ -1,0 +1,185 @@
+Region;District;DHIS2_Dist;Council Type;Strata 2020;Strata 2023;IRS_curr;StdNet_curr;PBONet_curr;IPTSc_curr;IPTp_curr;LSM_curr;iCCM_curr;IPTi_curr;SMC_curr;SBC_curr;CBS_curr;IPTp_planned;LSM_planned;SBC_planned;CBS_planned;Vaccine_planned_NSP _New;IPTSc_NSP_New;PMC_NSP_New;SMC_NSP_New;iCCM_NSP_New;MRC_NSP_new;IRS_NSP_New;MRC_NSP_for IRS scenario
+Arusha Region;Arusha DC;Arusha District Council;DC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Arusha Region;Longido DC;Longido District Council;DC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Arusha Region;Karatu DC;Karatu District Council;DC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Arusha Region;Monduli DC;Monduli District Council;DC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Arusha Region;Arusha CC;Arusha City Council;CC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes Blanket;Yes;Yes;No;No;No;No;No;No;No;No
+Arusha Region;Meru DC;Meru District Council;DC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Arusha Region;Ngorongoro DC;Ngorongoro District Council;DC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Dar Es Salaam Region;Ilala MC;Ilala Municipal Council;MC;low;low;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Blanket;Yes;No;No;No;No;No;No;No;No;No
+Dar Es Salaam Region;Kigamboni MC;Kigamboni Municipal Council;MC;low;low;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Blanket;Yes;No;No;No;No;No;No;No;No;No
+Dar Es Salaam Region;Kinondoni MC;Kinondoni Municipal Council;MC;low;low;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Blanket;Yes;No;No;No;No;No;No;No;No;No
+Dar Es Salaam Region;Temeke MC;Temeke Municipal Council;MC;low;low;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Blanket;Yes;No;No;No;No;No;No;No;No;No
+Dar Es Salaam Region;Ubungo MC;Ubungo Municipal Council;MC;low;Very L;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Blanket;Yes;No;No;No;No;No;No;No;No;No
+Dodoma Region;Bahi DC;Bahi District Council;DC;low;low;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Seasonal;Yes;No;No;No;No;No;No;No;No;No
+Dodoma Region;Chamwino DC;Chamwino District Council;DC;low;low;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Seasonal;Yes;No;No;No;No;No;No;No;No;No
+Dodoma Region;Chemba DC;Chemba District Council;DC;low;low;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Seasonal;Yes;No;No;No;No;No;No;No;No;No
+Dodoma Region;Kondoa DC;Kondoa District Council;DC;low;Very L;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Seasonal;Yes;No;No;No;No;No;No;No;No;No
+Dodoma Region;Kondoa TC;Kondoa Town Council;TC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;No;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Dodoma Region;Mpwapwa DC;Mpwapwa District Council;DC;low;low;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Seasonal;Yes;No;No;No;No;No;No;No;No;No
+Dodoma Region;Dodoma MC;Dodoma Municipal Council;MC;low;Very L;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Blanket;Yes;No;No;No;No;No;No;No;No;No
+Dodoma Region;Kongwa DC;Kongwa District Council;DC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;No;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Geita Region;Bukombe DC;Bukombe District Council;DC;high;moderate;No;No;Yes;No;Yes;No;Yes;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;Yes;PBO;No;PBO
+Geita Region;Chato DC;Chato District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Geita Region;Geita DC;Geita District Council;DC;high;high;No;No;Yes;No;Yes;No;Yes;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Geita Region;Geita TC;Geita Town council;TC;moderate;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Geita Region;Mbogwe DC;Mbogwe District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Geita Region;Nyang'hwale DC;Nyang'hwale District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Iringa Region;Iringa DC;Iringa District Council;DC;low;Very L;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Seasonal;Yes;No;No;No;No;No;No;No;No;No
+Iringa Region;Mufindi DC;Mufindi District Council;DC;Very L;low;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Iringa Region;Kilolo DC;Kilolo District Council;DC;low;low;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Seasonal;Yes;No;No;No;No;No;No;No;No;No
+Iringa Region;Mafinga TC;Mafinga Town Council;TC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Iringa Region;Iringa MC;Iringa Municipal Council;MC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes Blanket;Yes;Yes;No;No;No;No;No;No;No;No
+Kagera Region;Biharamulo DC;Biharamulo District Council;DC;high;high;No;No;Yes;No;Yes;No;Yes;No;No;;No;Yes;Yes Targeted;Yes;No;yes;yes;Yes;No;Yes;PBO;Yes;PBO
+Kagera Region;Bukoba DC;Bukoba District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;yes;yes;Yes;No;Yes;PBO;Yes;PBO
+Kagera Region;Bukoba MC;Bukoba Municipal Council;MC;low;low;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Blanket;Yes;No;yes;No;No;No;No;No;No;No
+Kagera Region;Karagwe DC;Karagwe District Council;DC;high;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;yes;No;No;No;No;PBO;No;PBO
+Kagera Region;Kyerwa DC;Kyerwa District Council;DC;high;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;yes;No;No;No;No;PBO;No;PBO
+Kagera Region;Missenyi DC;Missenyi District Council;DC;moderate;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;yes;No;No;No;No;PBO;No;PBO
+Kagera Region;Muleba DC;Muleba District Council;DC;high;moderate;No;No;Yes;No;Yes;No;Yes;No;No;;No;Yes;Yes Targeted;Yes;No;yes;No;No;No;Yes;PBO;No;PBO
+Kagera Region;Ngara DC;Ngara District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;yes;yes;Yes;No;Yes;PBO;Yes;PBO
+Katavi Region;Mlele DC;Mlele District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Katavi Region;Mpanda DC;Tanganyika District Council;DC;moderate;moderate;No;No;Yes;No;Yes;No;Yes;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Katavi Region;Mpanda MC;Mpanda Municipal Council;MC;high;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Blanket;Yes;No;No;No;No;No;No;PBO;No;PBO
+Katavi Region;Mpimbwe DC;Mpimbwe District Council;DC;moderate;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Katavi Region;Nsimbo DC;Nsimbo District Council;DC;high;high;No;No;Yes;No;Yes;No;Yes;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Kigoma Region;Buhigwe DC;Buhigwe District Council;DC;high;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;Next Gen;No;PBO
+Kigoma Region;Kakonko DC;Kakonko District Council;DC;high;moderate;No;No;Yes;No;Yes;No;Yes;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;Yes;Next Gen;No;PBO
+Kigoma Region;Kasulu DC;Kasulu District Council;DC;high;high;Yes;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;Next Gen;Yes;PBO
+Kigoma Region;Kasulu TC;Kasulu Town Council;TC;moderate;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;Next Gen;No;PBO
+Kigoma Region;Kibondo DC;Kibondo District Council;DC;high;high;Yes;No;Yes;Yes;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;Next Gen;Yes;PBO
+Kigoma Region;Kigoma DC;Kigoma District Council;DC;high;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;Next Gen;No;PBO
+Kigoma Region;Kigoma MC;Kigoma Municipal Council;MC;high;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Blanket;Yes;No;No;No;No;No;No;Next Gen;No;PBO
+Kigoma Region;Uvinza DC;Uvinza District Council;DC;high;moderate;No;No;Yes;No;Yes;No;Yes;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;Yes;Next Gen;No;PBO
+Kilimanjaro Region;Hai DC;Hai District Council;DC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Kilimanjaro Region;Same DC;Same District Council;DC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Kilimanjaro Region;Moshi DC;Moshi District Council;DC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Kilimanjaro Region;Mwanga DC;Mwanga District Council;DC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Kilimanjaro Region;Moshi MC;Moshi Municipal Council;MC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes Blanket;Yes;Yes;No;No;No;No;No;No;No;No
+Kilimanjaro Region;Rombo DC;Rombo District Council;DC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Kilimanjaro Region;Siha DC;Siha District Council;DC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Lindi Region;Ruangwa DC;Ruangwa District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Lindi Region;Nachingwea DC;Nachingwea District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;Yes;Yes;PBO;Yes;PBO
+Lindi Region;Kilwa DC;Kilwa District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Lindi Region;Lindi DC;Mtama District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;No;No;No;PBO;No;PBO
+Lindi Region;Lindi MC;Lindi Municipal Council;MC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Blanket;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Lindi Region;Liwale DC;Liwale District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Manyara Region;Babati DC;Babati District Council;DC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Manyara Region;Kiteto DC;Kiteto District Council;DC;low;low;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Seasonal;Yes;No;No;No;No;No;No;No;No;No
+Manyara Region;Mbulu TC;Mbulu Town Council;TC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Manyara Region;Simanjiro DC;Simanjiro District Council;DC;low;Very L;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Seasonal;Yes;No;No;No;No;No;No;No;No;No
+Manyara Region;Babati TC;Babati Town Council;TC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Manyara Region;Hanang DC;Hanang District Council;DC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Manyara Region;Mbulu DC;Mbulu District Council;DC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Mara Region;Bunda DC;Bunda District Council;DC;moderate;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Mara Region;Bunda TC;Bunda Town Council;TC;moderate;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Mara Region;Butiama DC;Butiama District Council;DC;moderate;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Mara Region;Musoma DC;Musoma District Council;DC;moderate;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Mara Region;Musoma MC;Musoma Municipal Council;MC;moderate;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Blanket;Yes;No;No;No;No;No;No;PBO;No;PBO
+Mara Region;Rorya DC;Rorya District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Mara Region;Serengeti DC;Serengeti District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Mara Region;Tarime DC;Tarime District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Mara Region;Tarime TC;Tarime Town Council;TC;moderate;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Mbeya Region;Kyela DC;Kyela District Council;DC;moderate;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Mbeya Region;Mbarali DC;Mbarali District Council;DC;low;low;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Seasonal;Yes;No;No;No;No;No;No;No;No;No
+Mbeya Region;Busokelo DC;Busokelo District Council;DC;moderate;moderate;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Mbeya Region;Chunya DC;Chunya District Council;DC;moderate;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Mbeya Region;Mbeya CC;Mbeya City Council;CC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;No;No;Yes Blanket;Yes;Yes;No;No;No;No;No;No;No;No
+Mbeya Region;Mbeya DC;Mbeya District Council;DC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;No;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Mbeya Region;Rungwe DC;Rungwe District Council;DC;low;low;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Seasonal;Yes;No;No;No;No;No;No;No;No;No
+Morogoro Region;Morogoro MC;Morogoro Municipal Council;MC;low;low;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Blanket;Yes;No;No;No;No;No;No;No;No;No
+Morogoro Region;Kilosa DC;Kilosa District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;Yes;Yes;PBO;Yes;PBO
+Morogoro Region;Gairo DC;Gairo District Council;DC;low;low;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Seasonal;Yes;No;No;No;No;No;No;No;No;No
+Morogoro Region;Ifakara TC;Ifakara Town Council;TC;moderate;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Morogoro Region;Kilombero DC;Mlimba District Council;DC;moderate;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Morogoro Region;Malinyi DC;Malinyi District Council;DC;moderate;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Morogoro Region;Morogoro DC;Morogoro District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Morogoro Region;Mvomero DC;Mvomero District Council;DC;moderate;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Morogoro Region;Ulanga DC;Ulanga District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Mtwara Region;Masasi DC;Masasi District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Mtwara Region;Nanyamba TC;Nanyamba Town Council;TC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Mtwara Region;Newala DC;Newala District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Mtwara Region;Tandahimba DC;Tandahimba District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Mtwara Region;Masasi TC;Masasi Town Council;TC;high;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;Yes;No;PBO;No;PBO
+Mtwara Region;Nanyumbu DC;Nanyumbu District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;Yes;Yes;PBO;Yes;PBO
+Mtwara Region;Newala TC;Newala Town Council;TC;moderate;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;Yes;Yes;PBO;Yes;PBO
+Mtwara Region;Mtwara DC;Mtwara District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Mtwara Region;Mtwara MC;Mtwara Municipal Council;MC;high;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Blanket;Yes;No;No;No;No;No;No;PBO;No;PBO
+Mwanza Region;Buchosa DC;Buchosa District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Mwanza Region;Ilemela MC;Ilemela Municipal Council;MC;moderate;low;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Blanket;Yes;No;No;No;No;No;No;No;No;No
+Mwanza Region;Kwimba DC;Kwimba District Council;DC;moderate;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Mwanza Region;Magu DC;Magu District Council;DC;moderate;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Mwanza Region;Misungwi DC;Misungwi District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Mwanza Region;Nyamagana MC;Nyamagana Municipal Council;MC;low;low;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Blanket;Yes;No;No;No;No;No;No;No;No;No
+Mwanza Region;Sengerema DC;Sengerema District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Mwanza Region;Ukerewe DC;Ukerewe District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Njombe Region;Wanging'ombe DC;Wanging'ombe District Council;DC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Njombe Region;Makambako TC;Makambako Town Council;TC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Njombe Region;Njombe DC;Njombe District Council;DC;low;low;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Seasonal;Yes;Yes;No;No;No;No;No;No;No;No
+Njombe Region;Ludewa DC;Ludewa District Council;DC;moderate;moderate;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Njombe Region;Makete DC;Makete District Council;DC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Njombe Region;Njombe TC;Njombe Town Council;TC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;Yes;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Pwani Region;Mkuranga DC;Mkuranga District Council;DC;high;high;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Pwani Region;Bagamoyo DC;Bagamoyo District Council;DC;low;low;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Seasonal;Yes;No;No;No;No;No;No;No;No;No
+Pwani Region;Chalinze DC;Chalinze District Council;DC;moderate;moderate;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Pwani Region;Kibaha DC;Kibaha District Council;DC;moderate;high;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Pwani Region;Kibaha TC;Kibaha Town Council;TC;low;low;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Seasonal;Yes;No;No;No;No;No;No;No;No;No
+Pwani Region;Kibiti DC;Kibiti District Council;DC;high;high;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Pwani Region;Kisarawe DC;Kisarawe District Council;DC;high;high;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Pwani Region;Mafia DC;Mafia District Council;DC;high;moderate;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Pwani Region;Rufiji DC;Rufiji District Council;DC;moderate;moderate;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Rukwa Region;Kalambo DC;Kalambo District Council;DC;moderate;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Rukwa Region;Nkasi DC;Nkasi District Council;DC;moderate;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Rukwa Region;Sumbawanga DC;Sumbawanga District Council;DC;moderate;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Rukwa Region;Sumbawanga MC;Sumbawanga Municipal Council;MC;low;low;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Blanket;Yes;No;No;No;No;No;No;No;No;No
+Ruvuma Region;Songea DC;Songea District Council;DC;high;high;No;No;Yes;No;Yes;No;Yes;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Ruvuma Region;Songea MC;Songea Municipal Council;MC;moderate;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Blanket;Yes;No;No;No;No;No;No;PBO;No;PBO
+Ruvuma Region;Mbinga DC;Mbinga District Council;DC;moderate;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;Yes;No;PBO;No;PBO
+Ruvuma Region;Mbinga TC;Mbinga Town Council;TC;moderate;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;Yes;No;PBO;No;PBO
+Ruvuma Region;Madaba DC;Madaba District Council;DC;high;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Ruvuma Region;Namtumbo DC;Namtumbo District Council;DC;high;high;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Ruvuma Region;Nyasa DC;Nyasa District Council;DC;high;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Ruvuma Region;Tunduru DC;Tunduru District Council;DC;high;high;No;No;Yes;No;Yes;No;Yes;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Shinyanga Region;Kahama TC;Kahama Town Council;TC;moderate;moderate;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;Next Gen;No;PBO
+Shinyanga Region;Kishapu DC;Kishapu District Council;DC;moderate;moderate;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;Next Gen;No;PBO
+Shinyanga Region;Msalala DC;Msalala District Council;DC;high;high;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;Next Gen;Yes;PBO
+Shinyanga Region;Shinyanga DC;Shinyanga District Council;DC;moderate;high;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;Next Gen;Yes;PBO
+Shinyanga Region;Shinyanga MC;Shinyanga Municipal Council;MC;moderate;moderate;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Blanket;Yes;No;No;No;No;No;No;Next Gen;No;PBO
+Shinyanga Region;Ushetu DC;Ushetu District Council;DC;high;high;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;Next Gen;Yes;PBO
+Simiyu Region;Bariadi DC;Bariadi District Council;DC;moderate;moderate;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Simiyu Region;Bariadi TC;Bariadi Town Council;TC;moderate;low;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;No;No;No
+Simiyu Region;Busega DC;Busega District Council;DC;moderate;moderate;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Simiyu Region;Itilima DC;Itilima District Council;DC;moderate;low;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;No;No;No
+Simiyu Region;Maswa DC;Maswa District Council;DC;moderate;moderate;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Simiyu Region;Meatu DC;Meatu District Council;DC;low;Very L;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Seasonal;Yes;No;No;No;No;No;No;No;No;No
+Singida Region;Ikungi DC;Ikungi District Council;DC;low;low;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Seasonal;Yes;No;No;No;No;No;No;No;No;No
+Singida Region;Iramba DC;Iramba District Council;DC;low;low;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Seasonal;Yes;No;No;No;No;No;No;No;No;No
+Singida Region;Manyoni DC;Manyoni District Council;DC;low;low;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Seasonal;Yes;No;No;No;No;No;No;No;No;No
+Singida Region;Singida DC;Singida District Council;DC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;No;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Singida Region;Itigi DC;Itigi District Council;DC;moderate;moderate;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;Yes;No;PBO;No;PBO
+Singida Region;Mkalama DC;Mkalama District Council;DC;Very L;low;No;Yes;No;No;Yes;No;No;No;No;;No;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Singida Region;Singida MC;Singida Municipal Council;MC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;No;No;Yes Blanket;Yes;Yes;No;No;No;No;No;No;No;No
+Songwe Region;Ileje DC;Ileje District Council;DC;low;low;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Seasonal;Yes;No;No;No;No;No;No;No;No;No
+Songwe Region;Mbozi DC;Mbozi District Council;DC;Very L;low;No;Yes;No;No;Yes;No;No;No;No;;No;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Songwe Region;Momba DC;Momba District Council;DC;low;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Seasonal;Yes;No;No;No;No;No;No;PBO;No;PBO
+Songwe Region;Songwe DC;Songwe District Council;DC;moderate;moderate;No;No;Yes;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Songwe Region;Tunduma TC;Tunduma Town Council;TC;Very L;Very L;No;Yes;No;No;Yes;No;No;No;No;;No;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Tabora Region;Nzega TC;Nzega Town Council;TC;moderate;moderate;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;Next Gen;No;PBO
+Tabora Region;Uyui DC;Uyui District Council;DC;high;high;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;Next Gen;Yes;PBO
+Tabora Region;Igunga DC;Igunga District Council;DC;moderate;moderate;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;Yes;No;Next Gen;No;PBO
+Tabora Region;Nzega DC;Nzega District Council;DC;high;high;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;Yes;Yes;Next Gen;Yes;PBO
+Tabora Region;Kaliua DC;Kaliua District Council;DC;high;high;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;Next Gen;Yes;PBO
+Tabora Region;Sikonge DC;Sikonge District Council;DC;high;high;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;Next Gen;Yes;PBO
+Tabora Region;Tabora MC;Tabora Municipal Council;MC;moderate;moderate;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Blanket;Yes;No;No;No;No;No;No;Next Gen;No;PBO
+Tabora Region;Urambo DC;Urambo District Council;DC;high;high;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;Next Gen;Yes;PBO
+Tanga Region;Handeni DC;Handeni District Council;DC;high;high;No;Yes;No;Yes;Yes;Yes;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;Yes;Yes;PBO;Yes;PBO
+Tanga Region;Handeni TC;Handeni Town Council;TC;high;high;No;Yes;No;Yes;Yes;Yes;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;Yes;Yes;PBO;Yes;PBO
+Tanga Region;Bumbuli DC;Bumbuli District Council;DC;Very L;low;No;Yes;No;No;Yes;No;No;No;No;;No;No;Yes focal;Yes;Yes;No;No;No;No;No;No;No;No
+Tanga Region;Kilindi DC;Kilindi District Council;DC;moderate;moderate;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Tanga Region;Korogwe DC;Korogwe District Council;DC;moderate;moderate;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Tanga Region;Korogwe TC;Korogwe Town Council;TC;moderate;moderate;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Tanga Region;Lushoto DC;Lushoto District Council;DC;low;low;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Seasonal;Yes;No;No;No;No;No;No;No;No;No
+Tanga Region;Mkinga DC;Mkinga District Council;DC;moderate;moderate;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Tanga Region;Muheza DC;Muheza District Council;DC;high;high;No;Yes;No;Yes;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;yes;Yes;No;Yes;PBO;Yes;PBO
+Tanga Region;Pangani DC;Pangani District Council;DC;moderate;moderate;No;Yes;No;No;Yes;No;No;No;No;;No;Yes;Yes Targeted;Yes;No;No;No;No;No;No;PBO;No;PBO
+Tanga Region;Tanga CC;Tanga City Council;CC;moderate;moderate;No;Yes;No;No;Yes;Yes;No;No;No;;No;Yes;Yes Blanket;Yes;No;No;No;No;No;No;PBO;No;PBO

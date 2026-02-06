@@ -1,0 +1,185 @@
+Region,DHIS2_Dist,Strata.2020,Strata.2023,District_ITN_nmcp
+Lindi ,Ruangwa District Council,high,high,Ruangwa DC
+Mbeya ,Kyela District Council,moderate,moderate,Kyela DC
+Mtwara ,Masasi District Council,high,high,Masasi DC
+Mtwara ,Nanyamba Town Council,high,high,Nanyamba TC
+Mtwara ,Newala District Council,high,high,Newala DC
+Mtwara ,Tandahimba District Council,high,high,Tandahimba DC
+Pwani ,Mkuranga District Council,high,high,Mkuranga DC
+Ruvuma ,Songea District Council,high,high,Songea DC
+Ruvuma ,Songea Municipal Council,moderate,moderate,Songea MC
+Tabora ,Nzega Town Council,moderate,moderate,Nzega TC
+Tabora ,Uyui District Council,high,high,Uyui DC
+Arusha ,Arusha District Council,very low,very low,Arusha DC
+Arusha ,Longido District Council,very low,very low,Longido DC
+Dodoma ,Bahi District Council,low,low,Bahi DC
+Dodoma ,Chamwino District Council,low,low,Chamwino DC
+Dodoma ,Chemba District Council,low,low,Chemba DC
+Dodoma ,Kondoa District Council,low,very low,Kondoa DC
+Dodoma ,Kondoa Town Council,very low,very low,Kondoa TC
+Dodoma ,Mpwapwa District Council,low,low,Mpwapwa DC
+Iringa ,Iringa District Council,low,very low,Iringa DC
+Iringa ,Mufindi District Council,very low,low,Mufindi DC
+Kilimanjaro ,Hai District Council,very low,very low,Hai DC
+Kilimanjaro ,Same District Council,very low,very low,Same DC
+Manyara ,Babati District Council,very low,very low,Babati DC
+Manyara ,Kiteto District Council,low,low,Kiteto DC
+Manyara ,Mbulu Town Council,very low,very low,Mbulu TC
+Manyara ,Simanjiro District Council,low,very low,Simanjiro DC
+Mbeya ,Mbarali District Council,low,low,Mbarali DC
+Njombe ,Wanging'ombe District Council,very low,very low,Wanging'ombe DC
+Singida ,Ikungi District Council,low,low,Ikungi DC
+Singida ,Iramba District Council,low,low,Iramba DC
+Singida ,Manyoni District Council,low,low,Manyoni DC
+Singida ,Singida District Council,very low,very low,Singida DC
+Songwe ,Ileje District Council,low,low,Ileje DC
+Arusha ,Karatu District Council,very low,very low,Karatu DC
+Arusha ,Monduli District Council,very low,very low,Monduli DC
+Dodoma ,Dodoma Municipal Council,low,very low,Dodoma CC
+Dodoma ,Kongwa District Council,very low,very low,Kongwa DC
+Iringa ,Kilolo District Council,low,low,Kilolo DC
+Iringa ,Mafinga Town Council,very low,very low,Mafinga TC
+Kilimanjaro ,Moshi District Council,very low,very low,Moshi DC
+Kilimanjaro ,Mwanga District Council,very low,very low,Mwanga DC
+Manyara ,Babati Town Council,very low,very low,Babati TC
+Manyara ,Hanang District Council,very low,very low,Hanang DC
+Morogoro ,Morogoro Municipal Council,low,low,Morogoro MC
+Njombe ,Makambako Town Council,very low,very low,Makambako TC
+Njombe ,Njombe District Council,low,low,Njombe DC
+Lindi ,Nachingwea District Council,high,high,Nachingwea DC
+Morogoro ,Kilosa District Council,high,high,Kilosa DC
+Mtwara ,Masasi Town Council,high,moderate,Masasi TC
+Mtwara ,Nanyumbu District Council,high,high,Nanyumbu DC
+Mtwara ,Newala Town Council,moderate,high,Newala TC
+Ruvuma ,Mbinga District Council,moderate,moderate,Mbinga DC
+Ruvuma ,Mbinga Town Council,moderate,moderate,Mbinga TC
+Singida ,Itigi District Council,moderate,moderate,Itigi DC
+Tabora ,Igunga District Council,moderate,moderate,Igunga DC
+Tabora ,Nzega District Council,high,high,Nzega DC
+Tanga ,Handeni District Council,high,high,Handeni DC
+Tanga ,Handeni Town Council,high,high,Handeni TC
+Arusha ,Arusha City Council,very low,very low,Arusha CC
+Arusha ,Meru District Council,very low,very low,Meru DC
+Arusha ,Ngorongoro District Council,very low,very low,Ngorongoro DC
+Dar Es Salaam ,Ilala Municipal Council,low,low,Ilala MC
+Dar Es Salaam ,Kigamboni Municipal Council,low,low,Kigamboni MC
+Dar Es Salaam ,Kinondoni Municipal Council,low,low,Kinondoni MC
+Dar Es Salaam ,Temeke Municipal Council,low,low,Temeke MC
+Dar Es Salaam ,Ubungo Municipal Council,low,very low,Ubungo MC
+Geita ,Bukombe District Council,high,moderate,Bukombe DC
+Geita ,Chato District Council,high,high,Chato DC
+Geita ,Geita District Council,high,high,Geita DC
+Geita ,Geita Town council,moderate,moderate,Geita TC
+Geita ,Mbogwe District Council,high,high,Mbogwe DC
+Geita ,Nyang'hwale District Council,high,high,Nyang'hwale DC
+Iringa ,Iringa Municipal Council,very low,very low,Iringa MC
+Kagera ,Biharamulo District Council,high,high,Biharamulo DC
+Kagera ,Bukoba District Council,high,high,Bukoba DC
+Kagera ,Bukoba Municipal Council,low,low,Bukoba MC
+Kagera ,Karagwe District Council,high,moderate,Karagwe DC
+Kagera ,Kyerwa District Council,high,moderate,Kyerwa DC
+Kagera ,Missenyi District Council,moderate,moderate,Missenyi DC
+Kagera ,Muleba District Council,high,moderate,Muleba DC
+Kagera ,Ngara District Council,high,high,Ngara DC
+Katavi ,Mlele District Council,high,high,Mlele DC
+Katavi ,Tanganyika District Council,moderate,moderate,NA
+Katavi ,Mpanda Municipal Council,high,moderate,Mpanda MC
+Katavi ,Mpimbwe District Council,moderate,high,Mpimbwe DC
+Katavi ,Nsimbo District Council,high,high,Nsimbo DC
+Kigoma ,Buhigwe District Council,high,moderate,Buhigwe DC
+Kigoma ,Kakonko District Council,high,moderate,Kakonko DC
+Kigoma ,Kasulu District Council,high,high,Kasulu DC
+Kigoma ,Kasulu Town Council,moderate,moderate,Kasulu TC
+Kigoma ,Kibondo District Council,high,high,Kibondo DC
+Kigoma ,Kigoma District Council,high,moderate,Kigoma-Ujiji MC
+Kigoma ,Kigoma Municipal Council,high,moderate,Kigoma DC
+Kigoma ,Uvinza District Council,high,moderate,Uvinza DC
+Kilimanjaro ,Moshi Municipal Council,very low,very low,Moshi MC
+Kilimanjaro ,Rombo District Council,very low,very low,Rombo DC
+Kilimanjaro ,Siha District Council,very low,very low,Siha DC
+Lindi ,Kilwa District Council,high,high,Kilwa DC
+Lindi ,Mtama District Council,high,high,Mtama DC
+Lindi ,Lindi Municipal Council,high,high,Lindi MC
+Lindi ,Liwale District Council,high,high,Liwale DC
+Manyara ,Mbulu District Council,very low,very low,Mbulu DC
+Mara ,Bunda District Council,moderate,moderate,Bunda DC
+Mara ,Bunda Town Council,moderate,moderate,Bunda TC
+Mara ,Butiama District Council,moderate,high,Butiama DC
+Mara ,Musoma District Council,moderate,high,Musoma DC
+Mara ,Musoma Municipal Council,moderate,moderate,Musoma MC
+Mara ,Rorya District Council,high,high,Rorya DC
+Mara ,Serengeti District Council,high,high,Serengeti DC
+Mara ,Tarime District Council,high,high,Tarime DC
+Mara ,Tarime Town Council,moderate,moderate,Tarime TC
+Mbeya ,Busokelo District Council,moderate,moderate,Busokelo DC
+Mbeya ,Chunya District Council,moderate,high,Chunya DC
+Mbeya ,Mbeya City Council,very low,very low,Mbeya CC
+Mbeya ,Mbeya District Council,very low,very low,Mbeya DC
+Mbeya ,Rungwe District Council,low,low,Rungwe DC
+Morogoro ,Gairo District Council,low,low,Gairo DC
+Morogoro ,Ifakara Town Council,moderate,moderate,Ifakara TC
+Morogoro ,Mlimba District Council,moderate,high,NA
+Morogoro ,Malinyi District Council,moderate,moderate,Malinyi DC
+Morogoro ,Morogoro District Council,high,high,Morogoro DC
+Morogoro ,Mvomero District Council,moderate,moderate,Mvomero DC
+Morogoro ,Ulanga District Council,high,high,Ulanga DC
+Mtwara ,Mtwara District Council,high,high,Mtwara DC
+Mtwara ,Mtwara Municipal Council,high,moderate,Mtwara MC
+Mwanza ,Buchosa District Council,high,high,Buchosa DC
+Mwanza ,Ilemela Municipal Council,moderate,low,Ilemela MC
+Mwanza ,Kwimba District Council,moderate,moderate,Kwimba DC
+Mwanza ,Magu District Council,moderate,moderate,Magu DC
+Mwanza ,Misungwi District Council,high,high,Misungwi DC
+Mwanza ,Nyamagana Municipal Council,low,low,Mwanza CC
+Mwanza ,Sengerema District Council,high,high,Sengerema DC
+Mwanza ,Ukerewe District Council,high,high,Ukerewe DC
+Njombe ,Ludewa District Council,moderate,moderate,Ludewa DC
+Njombe ,Makete District Council,very low,very low,Makete DC
+Njombe ,Njombe Town Council,very low,very low,Njombe TC
+Pwani ,Bagamoyo District Council,low,low,Bagamoyo DC
+Pwani ,Chalinze District Council,moderate,moderate,Chalinze DC
+Pwani ,Kibaha District Council,moderate,high,Kibaha DC
+Pwani ,Kibaha Town Council,low,low,Kibaha TC
+Pwani ,Kibiti District Council,high,high,Kibiti DC
+Pwani ,Kisarawe District Council,high,high,Kisarawe DC
+Pwani ,Mafia District Council,high,moderate,Mafia DC
+Pwani ,Rufiji District Council,moderate,moderate,Rufiji DC
+Rukwa ,Kalambo District Council,moderate,moderate,Kalambo DC
+Rukwa ,Nkasi District Council,moderate,moderate,Nkasi DC
+Rukwa ,Sumbawanga District Council,moderate,moderate,Sumbawanga DC
+Rukwa ,Sumbawanga Municipal Council,low,low,Sumbawanga MC
+Ruvuma ,Madaba District Council,high,moderate,Madaba DC
+Ruvuma ,Namtumbo District Council,high,high,Namtumbo DC
+Ruvuma ,Nyasa District Council,high,moderate,Nyasa DC
+Ruvuma ,Tunduru District Council,high,high,Tunduru DC
+Shinyanga ,Kahama Town Council,moderate,moderate,Kahama TC
+Shinyanga ,Kishapu District Council,moderate,moderate,Kishapu DC
+Shinyanga ,Msalala District Council,high,high,Msalala DC
+Shinyanga ,Shinyanga District Council,moderate,high,Shinyanga DC
+Shinyanga ,Shinyanga Municipal Council,moderate,moderate,Shinyanga MC
+Shinyanga ,Ushetu District Council,high,high,Ushetu DC
+Simiyu ,Bariadi District Council,moderate,moderate,Bariadi DC
+Simiyu ,Bariadi Town Council,moderate,low,Bariadi TC
+Simiyu ,Busega District Council,moderate,moderate,Busega DC
+Simiyu ,Itilima District Council,moderate,low,Itilima DC
+Simiyu ,Maswa District Council,moderate,moderate,Maswa DC
+Simiyu ,Meatu District Council,low,very low,Meatu DC
+Singida ,Mkalama District Council,very low,low,Mkalama DC
+Singida ,Singida Municipal Council,very low,very low,Singida MC
+Songwe ,Mbozi District Council,very low,low,Mbozi DC
+Songwe ,Momba District Council,low,moderate,Momba DC
+Songwe ,Songwe District Council,moderate,moderate,Songwe DC
+Songwe ,Tunduma Town Council,very low,very low,Tunduma TC
+Tabora ,Kaliua District Council,high,high,Kaliua DC
+Tabora ,Sikonge District Council,high,high,Sikonge DC
+Tabora ,Tabora Municipal Council,moderate,moderate,Tabora MC
+Tabora ,Urambo District Council,high,high,Urambo DC
+Tanga ,Bumbuli District Council,very low,low,Bumbuli DC
+Tanga ,Kilindi District Council,moderate,moderate,Kilindi DC
+Tanga ,Korogwe District Council,moderate,moderate,Korogwe DC
+Tanga ,Korogwe Town Council,moderate,moderate,Korogwe TC
+Tanga ,Lushoto District Council,low,low,Lushoto DC
+Tanga ,Mkinga District Council,moderate,moderate,Mkinga DC
+Tanga ,Muheza District Council,high,high,Muheza DC
+Tanga ,Pangani District Council,moderate,moderate,Pangani DC
+Tanga ,Tanga City Council,moderate,moderate,Tanga CC
