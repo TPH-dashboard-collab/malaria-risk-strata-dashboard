@@ -1,27 +1,30 @@
 # malaria-risk-strata-dashboard
-Development of an interactive R-Shiny dashboard that visualizes the movement of country regions between malaria risk strata, comparing Business as Usual (BAU) versus National Strategic Plan (NSP) scenarios. 
 
-# Tanzania Malaria Risk Strata Dashboard - Phase 1
+## Project Overview
+Development of an interactive R-Shiny dashboard that visualizes the movement of country regions/districts between malaria risk strata, comparing Business as Usual (BAU) versus National Strategic Plan (NSP) scenarios. 
 
-## Project Goal
-To develop a functional, interactive R-Shiny dashboard visualizing the movement of Tanzanian districts between malaria risk strata. This tool compares Business as Usual (BAU) vs. National Strategic Plan (NSP) scenarios.
+This repository currently reflects **Phase1: Data Architecture & UI Framework**.
 
-## Phase 1: Data Architecture & UI Framework
-This initial release focuses on the foundational data processing and user interface structure:
-- **Recalculated Strata:** The `risk_stratum` column is dynamically generated from raw `prevalenceRate` using PfPR₂₋₁₀ thresholds.
-- **Seed Aggregation:** Logic implemented to average simulation outputs across multiple seeds for stability.
-- **Hierarchical Filtering:** Responsive menus for Intervention Plan, Year Range, Region (Admin 1), and District (Admin 2).
-- **Spatial Alignment:** Successful integration of DHIS2-compliant shapefiles with simulation data.
+## Core Features
+- **Automated Stratification:** Recalculates risk levels from raw `prevalenceRate` outputs based on current available thresholds.
+- **Seed Aggregation:** Collapses multiple simulation seeds into a  mean value per district.
+- **Cascading Filters:** Users can filter by Intervention Plan and Year. The District (Admin 2) menu dynamically populates based on the selected Region (Admin 1).
+- **Spatial Integration:** Simulation data is joined with DHIS2 shapefiles, transformed  to the WGS84 coordinate system for leaflet compatabilty.
 
-## Data Logic
-- **Indicator:** prevalenceRate (PfPR₂₋₁₀).
-- **Thresholds:**
-    - Very Low: ≤ 1.9%
-    - Low: 1.9% - 3.3%
-    - Moderate: 3.3% - 11%
-    - High: > 11%
+## Key Data Info
+Strata are calculated using the **PfPR₂₋₁₀ (Prevalence Rate)** indicator:
+- **Very Low:** ≤ 1.9%
+- **Low:** 1.9% – 3.3%
+- **Moderate:** 3.3% – 11%
+- **High:** > 11%
 
-## Repository Structure
-- `ui.R`: Dashboard layout and input controls.
-- `server.R`: Reactive logic and spatial join operations.
-- `functions.R`: Core analytical functions (Colors, Stratification, Aggregation).
+
+## Core Directory Scripts
+- `ui.R`: Dashboard layout and inputs.
+- `server.R`: Data reactivity, filtering logic, and preliminary visualizations.
+- `functions.R`: Currently holds functions for aggregation and risk calculation.
+
+
+## Next steps
+-  Core Visualization Development (Sankey & Persistence table)
+-  Improved Geospatial Interactivity
