@@ -2,7 +2,7 @@
 # History cleanup
 rm(list=ls())
 #gc()
-
+renv::status()
 # Load the necessary packages
 library(devtools)
 library(RSQLite)
@@ -16,9 +16,9 @@ library(ggpattern)
 # helpers functions -----------------------------------------------------------------------
 
 
-risk_strata = read.csv("DashboardTasks/code-snippets/risk-strata/risk_strata.csv")
-
-sim_plan = read_csv2("DashboardTasks/code-snippets/risk-strata/Tz_NSP_latest_ST_26_08_2024.csv")
+risk_strata = read.csv("malaria-risk-strata-dashboard/risk-strata/risk_strata.csv")
+view(risk_strata)
+sim_plan = read_csv2("malaria-risk-strata-dashboard/risk-strata/Tz_NSP_latest_ST_26_08_2024.csv")
 #view(sim_plan)
 sim_plan$DHIS2_Dist[sim_plan$DHIS2_Dist=="Mpanda District Council"] = "Tanganyika District Council"
 sim_plan$DHIS2_Dist[sim_plan$DHIS2_Dist=="Kilombero District Council"] = "Mlimba District Council"
@@ -36,11 +36,11 @@ risk_strata_update <- risk_strata_update %>%
 
 
 TZA_data <- readRDS(
-  "DashboardTasks/code-snippets/risk-strata/RiskStrataInputs.rds"
+  "malaria-risk-strata-dashboard/risk-strata/RiskStrataInputs.rds"
 )
 
 view(TZA_data)
-
+unique(TZA_data$DHIS2_Dist)
 
 #proportion of districts BAU IPTSc
 IPTSc_BAU_districts <- sim_plan %>% filter(IPTSc_curr == "Yes") %>% select(DHIS2_Dist)
@@ -52,7 +52,7 @@ nb_dist_pr_BAU_IPTsc = TZA_data |>
   filter(plan %in% planInterested[c(11,10)],
          DHIS2_Dist %in% IPTSc_BAU_districts,
          age_group=="2-10",
-         year %in% c(2020,2030)) |> #available in postprocessing |>
+         year %in% c(2020, 2022, 2025, 2030)) |> #available in postprocessing |>
   group_by(year, plan) |>
   summarise("very low" = sum(ind_mean<=0.019),
             "low" = sum(ind_mean>0.019 & ind_mean<=0.033),
@@ -133,7 +133,7 @@ nb_dist_pr_NSP_IPTsc = TZA_data |>
   filter(plan %in% planInterested[c(11,10)],
          DHIS2_Dist %in% IPTSc_NSP_districts,
          age_group=="2-10",
-         year %in% c(2020,2030)) |> #available in postprocessing |>
+         year %in% c(2020, 2022, 2025, 2030)) |> #available in postprocessing |>
   group_by(year, plan) |>
   summarise("very low" = sum(ind_mean<=0.019),
             "low" = sum(ind_mean>0.019 & ind_mean<=0.033),
