@@ -12,24 +12,44 @@ library(DT)
 #source("functions.R")
 
 server <- function(input, output, session) {
-## DATA ARCHITECTURE ##
-# Load and aggregate simulation data across seeds
-full_data <- reactive({
-  req(file.exists("tza_sample_data.csv"))
-  df <- read.csv("tza_sample_data.csv")
-  aggregate_data(df, age_filter = "0-5")
-})
-
-# Load and transform shapefile
-tza_shape <- reactive({
-  shp <- st_read("shapefiles/shapefiles/TZA_shapefile_correctNamesDHIS2_Dist.shp") %>%
-    st_transform(4326) # Transform shapefiles to WGS84 for Leaflet compatibility
-  return(shp)
-})
+  ## DATA ARCHITECTURE ##
   
-## REACTIVE FILTERS For UI Framework ##
-
-# Dynamic year slider detects year range from data
+  # Load and aggregate simulation data across seeds
+  req(file.exists("tza_sample_data.csv"))
+  df_raw <- read.csv("tza_sample_data.csv")
+  
+  ## Populate Age Selector Dynamically
+  observe({
+    req(df_raw)
+    
+    age_choices <- sort(unique(df_raw$age_group))
+    
+    # Set default to 0-5 if it exists, otherwise the first available
+    default_age <- if ("0-5" %in% age_choices) "0-5" else age_choices[1]
+    
+    updateSelectInput(
+      session,
+      "age_select",
+      choices = age_choices,
+      selected = default_age
+    )
+  })
+  
+  
+  ## Reactive aggregated data 
+  full_data <- reactive({
+    req(input$age_select)
+    aggregate_data(df_raw, age_filter = input$age_select)
+  })
+  
+  # Load and transform shapefile
+  tza_shape <- st_read("shapefiles/shapefiles/TZA_shapefile_correctNamesDHIS2_Dist.shp") %>%
+    st_transform(4326)
+  
+  
+  ## REACTIVE FILTERS For UI Framework ##
+  
+  # Dynamic year slider detects year range from data
   output$year_slider_ui <- renderUI({
     req(full_data())
     yrs <- sort(unique(full_data()$year))
@@ -63,7 +83,7 @@ tza_shape <- reactive({
   })
   
   
-  # DUAL DATA STREAMS 
+  ## DUAL DATA STREAMS ##
   
   # All BAU visual outputs will depend on this filtered dataset
   bau_filtered <- reactive({
@@ -98,13 +118,14 @@ tza_shape <- reactive({
   output$sankey_nsp <- renderPlotly({ req(nsp_filtered()); render_sankey(nsp_filtered, input$year_range) })
   
   # Simple MAPS 
-  render_simple_map <- function(data_reactive, shape_reactive, yrs) {
-    req(data_reactive(), shape_reactive())
+  render_simple_map <- function(data_reactive, shape_object, yrs) {
+    req(data_reactive())
     # Extract data for the map
     map_data <- data_reactive() %>% filter(year == yrs[2]) # Latest year only
     
     # Join simulation data to shapefile using 'admin_2'
-    geo_data <- shape_reactive() %>% left_join(map_data, by = "admin_2")
+    geo_data <- shape_object %>% left_join(map_data, by = "admin_2")
+    
     pal <- colorFactor(unname(get_risk_colors()), levels = names(get_risk_colors()), na.color = "#D3D3D3")
     
     leaflet(geo_data) %>% addProviderTiles(providers$CartoDB.Positron) %>%
@@ -112,8 +133,10 @@ tza_shape <- reactive({
                   label = ~paste0(admin_2, ": ", risk_stratum)) %>%
       addLegend(pal = pal, values = names(get_risk_colors()), position = "bottomright", title = "Risk Stratum")
   }
-  output$map_bau <- renderLeaflet({ render_simple_map(bau_filtered, tza_shape, input$year_range) })
-  output$map_nsp <- renderLeaflet({ render_simple_map(nsp_filtered, tza_shape, input$year_range) })
+  output$map_bau <- renderLeaflet({render_simple_map(bau_filtered, tza_shape, input$year_range)
+ })
+  output$map_nsp <- renderLeaflet({ render_simple_map(nsp_filtered, tza_shape, input$year_range)
+ })
   
   # DUAL TABLES 
   output$tab_bau <- renderDT({
