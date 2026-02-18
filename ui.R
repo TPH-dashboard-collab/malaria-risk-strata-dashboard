@@ -19,6 +19,10 @@ ui <- fluidPage(
       # Selection for NSP variants (BAU is handled as a fixed counterfactual)
       selectInput("plan_select", "Select Strategic Plan (NSP):", 
                   choices = c("NSP")),
+      
+      # Selection of age groups
+      selectInput( "age_select", "Select Age Group:", choices = NULL),
+      
       # Dynamic Year Slider
       uiOutput("year_slider_ui"),
       
@@ -26,6 +30,7 @@ ui <- fluidPage(
       # Geographic Filters
       selectInput("region_select", "Filter by Region:", choices = "All"),
       selectInput("dist_select", "Filter by District:", choices = "All"),
+      
       # Filters are updated in server function
       hr(),
       helpText("Comparison Logic:"),
