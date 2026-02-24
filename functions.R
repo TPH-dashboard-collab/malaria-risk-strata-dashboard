@@ -1,20 +1,14 @@
-# Functions for Malaria Risk Strata Dashboard 
-# This script contains the analytical engine for data aggregation, 
-# risk stratification, and sankey transition flow generation.
-
-
 library(tidyverse)
 
-# Malaria Risk Color Palette (https://www.colorhexa.com/)
+# Classic Malaria Risk Color Palette
 get_risk_colors <- function() {
-  c("Very Low" = "#26a69a",  # Teal
+  c("Very Low" = "#26a69a",  # Teal/Green
     "Low"      = "#d4e157",  # Lime
-    "Moderate" = "#ffb300",  # Orange
+    "Moderate" = "#ffb300",  # Amber/Orange
     "High"     = "#d32f2f")  # Red
 }
 
-# Risk Stratum Calculation 
-# Thresholds are based on PfPR_2-10
+# Strata Calculation 
 calculate_risk_strata <- function(data) {
   data %>%
     mutate(risk_stratum = case_when(
@@ -28,9 +22,7 @@ calculate_risk_strata <- function(data) {
                                  levels = c("Very Low", "Low", "Moderate", "High")))
 }
 
-# Data Aggregation 
-# Results are aggregated across multiple seeds and filtered for target age groups.
-# The target age group is 2-10 (0-5 is used as a placeholder here)
+# Aggregation Logic
 aggregate_data <- function(df, age_filter = "0-5") {
   df %>%
     filter(age_group == age_filter) %>%
@@ -39,7 +31,7 @@ aggregate_data <- function(df, age_filter = "0-5") {
     calculate_risk_strata()
 }
 
-# prepare sankey data
+
 prep_sankey_data <- function(df, selected_years) {
   req(length(selected_years) >= 2) # Need at least two years to show movement
   
@@ -49,7 +41,7 @@ prep_sankey_data <- function(df, selected_years) {
     filter(year %in% years) %>%
     select(admin_2, year, risk_stratum) %>%
     mutate(year = paste0("yr_", year)) %>%
-    # Use distinct to prevent duplicates should the data not be perfectly clean
+    # Use distinct to prevent duplicates if data isn't perfectly clean
     distinct(admin_2, year, .keep_all = TRUE) %>% 
     pivot_wider(names_from = year, values_from = risk_stratum) %>%
     drop_na()
@@ -59,6 +51,7 @@ prep_sankey_data <- function(df, selected_years) {
 
 
 # Generated Data for sankey plot
+
 generate_sankey_data <- function(df, selected_years) {
   years <- sort(selected_years)
   req(length(years) >= 2)
@@ -72,8 +65,8 @@ generate_sankey_data <- function(df, selected_years) {
     pivot_wider(id_cols = admin_2, names_from = year_label, values_from = risk_stratum) %>%
     drop_na() # Sankey flows must be continuous for each district
   
-  # Create Nodes
-  # We need a unique ID for each year stratt ("High-2026", "High-2027" for instance)
+  # 2. Create Nodes
+  # We need a unique ID for "High-2026", "High-2027", etc.
   nodes <- data.frame(label = character(), color = character(), stringsAsFactors = FALSE)
   risk_cols <- get_risk_colors()
   
@@ -89,7 +82,7 @@ generate_sankey_data <- function(df, selected_years) {
   }
   nodes$id <- 0:(nrow(nodes) - 1)
   
-  # Create Links (Flows between adjacent years)
+  #Create Links (Flows between adjacent years)
   links <- data.frame(source = numeric(), target = numeric(), value = numeric())
   
   for (i in 1:(length(years) - 1)) {
@@ -104,7 +97,7 @@ generate_sankey_data <- function(df, selected_years) {
       summarise(count = n(), .groups = "drop") %>%
       rename(source_lab = 1, target_lab = 2)
     
-    # Map labels to the created  Node IDs 
+    # Map labels to the Node IDs created in step 2
     for (j in 1:nrow(transitions)) {
       s_id <- nodes$id[nodes$stratum == transitions$source_lab[j] & nodes$year == yr_start]
       t_id <- nodes$id[nodes$stratum == transitions$target_lab[j] & nodes$year == yr_end]
@@ -113,7 +106,7 @@ generate_sankey_data <- function(df, selected_years) {
         source = s_id,
         target = t_id,
         value = transitions$count[j],
-        # To easily track ink color is a transparent version of the source node color
+        # Link color is a transparent version of the source node color
         color = paste0(risk_cols[[as.character(transitions$source_lab[j])]], "80") 
       ))
     }
@@ -121,3 +114,42 @@ generate_sankey_data <- function(df, selected_years) {
   
   return(list(nodes = nodes, links = links))
 }
+
+
+prep_persistence_data <- function(df, selected_years) {
+  yrs <- range(selected_years)
+  
+  df %>%
+    filter(year %in% yrs) %>%
+    select(admin_1, admin_2, year, risk_stratum, prevalenceRate) %>%
+    pivot_wider(names_from = year, 
+                values_from = c(risk_stratum, prevalenceRate)) %>%
+    mutate(PfPR_Change = .[[paste0("prevalenceRate_", yrs[2])]] - .[[paste0("prevalenceRate_", yrs[1])]]) %>%
+    # Filter for districts that stayed High or Moderate
+    filter(.[[paste0("risk_stratum_", yrs[1])]] %in% c("High", "Moderate"),
+           .[[paste0("risk_stratum_", yrs[2])]] %in% c("High", "Moderate"))
+}
+
+
+# Generate HTML Labels for Leaflet Map
+create_map_labels <- function(geo_data, yr_start, yr_end) {
+  # Standardize the column names based on selected years
+  start_strata_col <- paste0("risk_stratum_", yr_start)
+  end_strata_col   <- paste0("risk_stratum_", yr_end)
+  start_prev_col   <- paste0("prevalenceRate_", yr_start)
+  end_prev_col     <- paste0("prevalenceRate_", yr_end)
+  
+  labels <- sprintf(
+    "<strong>%s</strong><br/>
+    %s: %s (%.1f%%)<br/>
+    %s: %s (%.1f%%)<br/>
+    <em>Movement: %s to %s</em>",
+    geo_data$admin_2,
+    yr_start, geo_data[[start_strata_col]], geo_data[[start_prev_col]] * 100,
+    yr_end,   geo_data[[end_strata_col]],   geo_data[[end_prev_col]] * 100,
+    geo_data[[start_strata_col]], geo_data[[end_strata_col]]
+  ) %>% lapply(htmltools::HTML)
+  
+  return(labels)
+}
+
