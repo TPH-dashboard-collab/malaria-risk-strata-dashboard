@@ -59,27 +59,58 @@ server <- function(input, output, session) {
   
   # Populate the Region Dropdown
   observe({
-    req(full_data()) # Waits until CSV is loaded and aggregated
-    
-    # Get unique regions from admin_1
-    region_list <- sort(unique(full_data()$admin_1))
-    updateSelectInput(session, "region_select", choices = c("All", region_list))
-  })
-  
-  # Populate the District Dropdown with a cascading logic
-  observeEvent(input$region_select, {
     req(full_data())
     
-    # If Region is "All", the District dropdown shows all districts
+    region_list <- sort(unique(full_data()$admin_1))
+    
+    current_region <- isolate(input$region_select)
+    
+    # If current region still exists in new age data, keep it
+    selected_region <- if (!is.null(current_region) &&
+                           current_region %in% region_list) {
+      current_region
+    } else {
+      "All"
+    }
+    
+    updateSelectInput(
+      session,
+      "region_select",
+      choices = c("All", region_list),
+      selected = selected_region
+    )
+  })
+  
+  
+  # Populate the District Dropdown with a cascading logic
+  observeEvent(list(input$region_select, full_data()), {
+    req(full_data())
+    
     if (input$region_select == "All") {
       dist_list <- sort(unique(full_data()$admin_2))
     } else {
-      # If a specific region is selected, shows only districts in that region
       dist_list <- full_data() %>%
         filter(admin_1 == input$region_select) %>%
-        pull(admin_2) %>% unique() %>% sort()
+        pull(admin_2) %>%
+        unique() %>%
+        sort()
     }
-    updateSelectInput(session, "dist_select", choices = c("All", dist_list))
+    
+    current_dist <- isolate(input$dist_select)
+    
+    selected_dist <- if (!is.null(current_dist) &&
+                         current_dist %in% dist_list) {
+      current_dist
+    } else {
+      "All"
+    }
+    
+    updateSelectInput(
+      session,
+      "dist_select",
+      choices = c("All", dist_list),
+      selected = selected_dist
+    )
   })
   
   
@@ -117,36 +148,206 @@ server <- function(input, output, session) {
   output$sankey_bau <- renderPlotly({ req(bau_filtered()); render_sankey(bau_filtered, input$year_range) })
   output$sankey_nsp <- renderPlotly({ req(nsp_filtered()); render_sankey(nsp_filtered, input$year_range) })
   
-  # Simple MAPS 
-  render_simple_map <- function(data_reactive, shape_object, yrs) {
-    req(data_reactive())
-    # Extract data for the map
-    map_data <- data_reactive() %>% filter(year == yrs[2]) # Latest year only
-    
-    # Join simulation data to shapefile using 'admin_2'
-    geo_data <- shape_object %>% left_join(map_data, by = "admin_2")
-    
-    pal <- colorFactor(unname(get_risk_colors()), levels = names(get_risk_colors()), na.color = "#D3D3D3")
-    
-    leaflet(geo_data) %>% addProviderTiles(providers$CartoDB.Positron) %>%
-      addPolygons(fillColor = ~pal(risk_stratum), weight = 1, color = "white", fillOpacity = 0.7,
-                  label = ~paste0(admin_2, ": ", risk_stratum)) %>%
-      addLegend(pal = pal, values = names(get_risk_colors()), position = "bottomright", title = "Risk Stratum")
-  }
-  output$map_bau <- renderLeaflet({render_simple_map(bau_filtered, tza_shape, input$year_range)
- })
-  output$map_nsp <- renderLeaflet({ render_simple_map(nsp_filtered, tza_shape, input$year_range)
- })
   
-  # DUAL TABLES 
+  ## MAP OUTPUTS 
+  
+  # Helper function to avoid code duplication for the initial render
+  render_base_map <- function(data_reactive, shape_object, yrs) {
+    req(data_reactive(), shape_object)
+    yr_start <- yrs[1]; yr_end <- yrs[2]
+    
+    
+    hover_data <- data_reactive() %>%
+      filter(year %in% c(yr_start, yr_end)) %>%
+      select(admin_2, year, risk_stratum, prevalenceRate) %>%
+      pivot_wider(names_from = year, values_from = c(risk_stratum, prevalenceRate))
+    
+    geo_data <- shape_object %>% left_join(hover_data, by = "admin_2")
+    labels <- create_map_labels(geo_data, yr_start, yr_end)
+    
+    pal <- colorFactor(palette = unname(get_risk_colors()), 
+                       levels = names(get_risk_colors()), na.color = "#D3D3D3")
+    
+    leaflet(geo_data) %>%
+      addProviderTiles(providers$CartoDB.Positron) %>%
+      addPolygons(
+        fillColor = ~pal(get(paste0("risk_stratum_", yr_end))),
+        weight = 1, opacity = 1, color = "white", fillOpacity = 0.8,
+        highlightOptions = highlightOptions(weight = 3, color = "#666", bringToFront = TRUE),
+        label = labels,
+        labelOptions = labelOptions(style = list("font-weight" = "normal", padding = "3px 8px"))
+      ) %>%
+      # Initial legend
+      addLegend(
+        pal = pal, 
+        values = names(get_risk_colors()), 
+        position = "bottomright", 
+        title = paste0("Risk Stratum (", yr_end, ")"),
+        layerId = "map_legend" # Give it an ID to make it easier to manage
+      )
+  }
+  
+  output$map_bau <- renderLeaflet({ isolate(render_base_map(bau_filtered, tza_shape, input$year_range)) })
+  output$map_nsp <- renderLeaflet({ isolate(render_base_map(nsp_filtered, tza_shape, input$year_range)) })
+  
+  observeEvent(list(input$region_select, input$dist_select), {
+    
+    if (input$dist_select != "All") {
+      target_geom <- tza_shape %>% filter(admin_2 == input$dist_select)
+    } else if (input$region_select != "All") {
+      target_geom <- tza_shape %>% filter(Region_Nam == input$region_select)
+    } else {
+      target_geom <- tza_shape
+    }
+    
+    bbox <- st_bbox(target_geom)
+    
+    leafletProxy("map_bau") %>%
+      flyToBounds(bbox[["xmin"]], bbox[["ymin"]],
+                  bbox[["xmax"]], bbox[["ymax"]])
+    
+    leafletProxy("map_nsp") %>%
+      flyToBounds(bbox[["xmin"]], bbox[["ymin"]],
+                  bbox[["xmax"]], bbox[["ymax"]])
+    
+  }, ignoreInit = TRUE)
+  
+  
+  
+  
+  # Logic to update proxies (runs whenever data/years change)
+  # Update Colors, Labels, and Legends - triggers on ANY filter change
+  observe({
+    req(bau_filtered(), nsp_filtered(), input$year_range)
+    
+    yr_start <- input$year_range[1]
+    yr_end   <- input$year_range[2]
+    
+    risk_cols <- get_risk_colors()
+    pal <- colorFactor(unname(risk_cols), levels = names(risk_cols), na.color = "#D3D3D3")
+    
+    # UPDATE BAU MAP PROXY
+    hover_bau <- bau_filtered() %>% 
+      filter(year %in% c(yr_start, yr_end)) %>%
+      select(admin_2, year, risk_stratum, prevalenceRate) %>%
+      pivot_wider(names_from = year, values_from = c(risk_stratum, prevalenceRate))
+    
+    geo_bau <- tza_shape %>% left_join(hover_bau, by = "admin_2")
+    labels_bau <- create_map_labels(geo_bau, yr_start, yr_end)
+    
+    leafletProxy("map_bau", data = geo_bau) %>%
+      clearShapes() %>%
+      addPolygons(
+        fillColor = ~pal(get(paste0("risk_stratum_", yr_end))),
+        weight = 1, opacity = 1, color = "white", fillOpacity = 0.8,
+        highlightOptions = highlightOptions(weight = 3, color = "#666", bringToFront = TRUE),
+        label = labels_bau
+      ) %>%
+      clearControls() %>% # Removes old legend
+      addLegend(
+        pal = pal, 
+        values = names(risk_cols), 
+        position = "bottomright", 
+        title = paste0("Risk Stratum (", yr_end, ")")
+      )
+    
+    # UPDATE NSP MAP PROXY 
+    hover_nsp <- nsp_filtered() %>% 
+      filter(year %in% c(yr_start, yr_end)) %>%
+      select(admin_2, year, risk_stratum, prevalenceRate) %>%
+      pivot_wider(names_from = year, values_from = c(risk_stratum, prevalenceRate))
+    
+    geo_nsp <- tza_shape %>% left_join(hover_nsp, by = "admin_2")
+    labels_nsp <- create_map_labels(geo_nsp, yr_start, yr_end)
+    
+    leafletProxy("map_nsp", data = geo_nsp) %>%
+      clearShapes() %>%
+      addPolygons(
+        fillColor = ~pal(get(paste0("risk_stratum_", yr_end))),
+        weight = 1, opacity = 1, color = "white", fillOpacity = 0.8,
+        highlightOptions = highlightOptions(weight = 3, color = "#666", bringToFront = TRUE),
+        label = labels_nsp
+      ) %>%
+      clearControls() %>% 
+      addLegend(
+        pal = pal, 
+        values = names(risk_cols), 
+        position = "bottomright", 
+        title = paste0("Risk Stratum (", yr_end, ")")
+      )
+  })
+  
+  # Persistence Summary: BAU 
+  output$sum_bau <- renderUI({
+    req(bau_filtered(), input$year_range)
+    
+    df_wide <- prep_sankey_data(bau_filtered(), input$year_range[1]:input$year_range[2])
+    first_col <- paste0("yr_", input$year_range[1])
+    last_col <- paste0("yr_", input$year_range[2])
+    
+    total_districts <- nrow(df_wide)
+    stuck_districts <- df_wide %>%
+      filter(!!sym(first_col) %in% c("High", "Moderate"),
+             !!sym(last_col) %in% c("High", "Moderate")) %>% nrow()
+    
+    perc <- round((stuck_districts / total_districts) * 100, 1)
+    
+    # Using 'alert-secondary' for a neutral baseline look
+    HTML(paste0(
+      "<div class='alert alert-secondary'>",
+      "<h4 class='alert-heading'>BAU Persistence</h4>",
+      "<b>", perc, "%</b> of districts (", stuck_districts,"/",total_districts,") ", 
+      "remain in High/Moderate strata under the status quo.",
+      "</div>"
+    ))
+  })
+  
+  # Persistence Summary
+  output$sum_nsp <- renderUI({
+    req(nsp_filtered(), input$year_range)
+    
+    df_wide <- prep_sankey_data(nsp_filtered(), input$year_range[1]:input$year_range[2])
+    first_col <- paste0("yr_", input$year_range[1])
+    last_col <- paste0("yr_", input$year_range[2])
+    
+    total_districts <- nrow(df_wide)
+    stuck_districts <- df_wide %>%
+      filter(!!sym(first_col) %in% c("High", "Moderate"),
+             !!sym(last_col) %in% c("High", "Moderate")) %>% nrow()
+    
+    perc <- round((stuck_districts / total_districts) * 100, 1)
+    
+   
+    HTML(paste0(
+      "<div class='alert alert-danger'>",
+      "<h4 class='alert-heading'>NSP Persistence</h4>",
+      "<b>", perc, "%</b> of districts (", stuck_districts,"/",total_districts,") ",
+      "remain in High/Moderate strata despite this strategic plan.",
+      "</div>"
+    ))
+  })
+  
+  # Table: BAU 
   output$tab_bau <- renderDT({
-    req(bau_filtered())
-    datatable(bau_filtered() %>% select(admin_1, admin_2, year, risk_stratum, prevalenceRate),
-              options = list(pageLength = 5, scrollX = TRUE))
+    req(bau_filtered(), input$year_range)
+    data <- prep_persistence_data(bau_filtered(), input$year_range[1]:input$year_range[2])
+    
+    datatable(data, 
+              # Rename columns
+              colnames = c("Region", "District", "Start Risk", "End Risk", "Start PfPR", "End PfPR", "Abs. Change"),
+              options = list(pageLength = 10, scrollX = TRUE, dom = 'tp')) %>%
+      formatPercentage(c(5, 6, 7), 1)
   })
+  
+  # Table: NSP 
   output$tab_nsp <- renderDT({
-    req(nsp_filtered())
-    datatable(nsp_filtered() %>% select(admin_1, admin_2, year, risk_stratum, prevalenceRate),
-              options = list(pageLength = 5, scrollX = TRUE))
+    req(nsp_filtered(), input$year_range)
+    data <- prep_persistence_data(nsp_filtered(), input$year_range[1]:input$year_range[2])
+    
+    datatable(data, 
+              colnames = c("Region", "District", "Start Risk", "End Risk", "Start PfPR", "End PfPR", "Abs. Change"),
+              options = list(pageLength = 10, scrollX = TRUE, dom = 'tp')) %>%
+      formatPercentage(c(5, 6, 7), 1)
   })
+  
 }
