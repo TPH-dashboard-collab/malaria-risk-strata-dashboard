@@ -12,7 +12,8 @@ library(DT)
 #source("functions.R")
 
 server <- function(input, output, session) {
-  ## DATA ARCHITECTURE ##
+ 
+   ## DATA ARCHITECTURE ##
   
   # Load and aggregate simulation data across seeds
   req(file.exists("tza_sample_data.csv"))
@@ -59,6 +60,7 @@ server <- function(input, output, session) {
   
   # Populate the Region Dropdown
   observe({
+    # Wait for the data to be aggregated
     req(full_data())
     
     region_list <- sort(unique(full_data()$admin_1))
@@ -83,36 +85,36 @@ server <- function(input, output, session) {
   
   
   # Populate the District Dropdown with a cascading logic
-  observeEvent(list(input$region_select, full_data()), {
+  observe({
     req(full_data())
     
-    if (input$region_select == "All") {
-      dist_list <- sort(unique(full_data()$admin_2))
+    # Identify current selections
+    selected_reg <- input$region_select
+    
+    # Logic to determine district choices
+    if (is.null(selected_reg) || selected_reg == "All") {
+      
+      # Provide choices for every district in the simulation data
+      dist_choices <- sort(unique(full_data()$admin_2))
     } else {
-      dist_list <- full_data() %>%
-        filter(admin_1 == input$region_select) %>%
+      
+      # Provide choices only for districts within that region
+      dist_choices <- full_data() %>%
+        filter(admin_1 == selected_reg) %>%
         pull(admin_2) %>%
         unique() %>%
         sort()
     }
     
-    current_dist <- isolate(input$dist_select)
-    
-    selected_dist <- if (!is.null(current_dist) &&
-                         current_dist %in% dist_list) {
-      current_dist
-    } else {
-      "All"
-    }
-    
+    # If the region is "All", we force the district to "All" (Initial load + Reset).
+    # If a region is chosen, we default to "All" so the plots show the Regional summary
     updateSelectInput(
       session,
       "dist_select",
-      choices = c("All", dist_list),
-      selected = selected_dist
+      choices = c("All", dist_choices),
+      selected = "All"
     )
   })
-  
   
   ## DUAL DATA STREAMS ##
   
@@ -136,20 +138,32 @@ server <- function(input, output, session) {
   
   output$nsp_sankey_title <- renderText({ paste("Strategic Plan:", input$plan_select) })
   
-  # DUAL SANKEY plots
+  ## DUAL SANKEY plots ##
+  
   # Function to generate the Sankey data structure and plot
   render_sankey <- function(data_reactive, yrs) {
-    s_list <- generate_sankey_data(data_reactive(), yrs[1]:yrs[2])
-    plot_ly(type = "sankey", orientation = "h",
-            node = list(label = s_list$nodes$label, color = s_list$nodes$color, pad = 15, thickness = 20),
-            link = list(source = s_list$links$source, target = s_list$links$target, 
-                        value = s_list$links$value, color = s_list$links$color))
+    
+    # Pass input$sankey_weight to the function
+    s_list <- generate_sankey_data(data_reactive(), yrs[1]:yrs[2], weight_type = input$sankey_weight)
+    
+    plot_ly(
+      type = "sankey", orientation = "h",
+      node = list(label = s_list$nodes$label, color = s_list$nodes$color, pad = 15, thickness = 20),
+      link = list(source = s_list$links$source, target = s_list$links$target, 
+                  value = s_list$links$value, color = s_list$links$color)
+    ) %>%
+      layout(
+        # Dynamic title based on selection
+        title = list(text = paste0("Flow based on: ", 
+                                   ifelse(input$sankey_weight == "nHost", "Population", "District Count")),
+                     font = list(size = 14))
+      )
   }
   output$sankey_bau <- renderPlotly({ req(bau_filtered()); render_sankey(bau_filtered, input$year_range) })
   output$sankey_nsp <- renderPlotly({ req(nsp_filtered()); render_sankey(nsp_filtered, input$year_range) })
   
   
-  ## MAP OUTPUTS 
+  ## MAP OUTPUTS ##
   
   # Helper function to avoid code duplication for the initial render
   render_base_map <- function(data_reactive, shape_object, yrs) {
@@ -212,69 +226,53 @@ server <- function(input, output, session) {
     
   }, ignoreInit = TRUE)
   
-  
-  
-  
   # Logic to update proxies (runs whenever data/years change)
   # Update Colors, Labels, and Legends - triggers on ANY filter change
   observe({
     req(bau_filtered(), nsp_filtered(), input$year_range)
     
-    yr_start <- input$year_range[1]
-    yr_end   <- input$year_range[2]
+    yr_start <- input$year_range[1]; yr_end <- input$year_range[2]
+    
+    # PROTECTIVE CHECK: If filters leave no data, don't update the map 
+    if (nrow(bau_filtered()) == 0 || nrow(nsp_filtered()) == 0) return(NULL)
     
     risk_cols <- get_risk_colors()
     pal <- colorFactor(unname(risk_cols), levels = names(risk_cols), na.color = "#D3D3D3")
     
-    # UPDATE BAU MAP PROXY
-    hover_bau <- bau_filtered() %>% 
-      filter(year %in% c(yr_start, yr_end)) %>%
+    # Process BAU
+    hover_bau <- bau_filtered() %>% filter(year %in% c(yr_start, yr_end)) %>%
       select(admin_2, year, risk_stratum, prevalenceRate) %>%
       pivot_wider(names_from = year, values_from = c(risk_stratum, prevalenceRate))
-    
     geo_bau <- tza_shape %>% left_join(hover_bau, by = "admin_2")
-    labels_bau <- create_map_labels(geo_bau, yr_start, yr_end)
     
-    leafletProxy("map_bau", data = geo_bau) %>%
-      clearShapes() %>%
-      addPolygons(
-        fillColor = ~pal(get(paste0("risk_stratum_", yr_end))),
-        weight = 1, opacity = 1, color = "white", fillOpacity = 0.8,
-        highlightOptions = highlightOptions(weight = 3, color = "#666", bringToFront = TRUE),
-        label = labels_bau
-      ) %>%
-      clearControls() %>% # Removes old legend
-      addLegend(
-        pal = pal, 
-        values = names(risk_cols), 
-        position = "bottomright", 
-        title = paste0("Risk Stratum (", yr_end, ")")
-      )
-    
-    # UPDATE NSP MAP PROXY 
-    hover_nsp <- nsp_filtered() %>% 
-      filter(year %in% c(yr_start, yr_end)) %>%
+    # Process NSP
+    hover_nsp <- nsp_filtered() %>% filter(year %in% c(yr_start, yr_end)) %>%
       select(admin_2, year, risk_stratum, prevalenceRate) %>%
       pivot_wider(names_from = year, values_from = c(risk_stratum, prevalenceRate))
-    
     geo_nsp <- tza_shape %>% left_join(hover_nsp, by = "admin_2")
+    
+    # Create labels (Check if geo_data has rows)
+    req(nrow(geo_bau) > 0, nrow(geo_nsp) > 0)
+    labels_bau <- create_map_labels(geo_bau, yr_start, yr_end)
     labels_nsp <- create_map_labels(geo_nsp, yr_start, yr_end)
     
+    # Update BAU Proxy
+    leafletProxy("map_bau", data = geo_bau) %>%
+      clearShapes() %>% clearControls() %>%
+      addPolygons(fillColor = ~pal(get(paste0("risk_stratum_", yr_end))),
+                  weight = 1, color = "white", fillOpacity = 0.8,
+                  highlightOptions = highlightOptions(weight = 3, color = "#666", bringToFront = TRUE),
+                  label = labels_bau) %>%
+      addLegend(pal = pal, values = names(risk_cols), position = "bottomright", title = paste0("Risk (", yr_end, ")"))
+    
+    # Update NSP Proxy
     leafletProxy("map_nsp", data = geo_nsp) %>%
-      clearShapes() %>%
-      addPolygons(
-        fillColor = ~pal(get(paste0("risk_stratum_", yr_end))),
-        weight = 1, opacity = 1, color = "white", fillOpacity = 0.8,
-        highlightOptions = highlightOptions(weight = 3, color = "#666", bringToFront = TRUE),
-        label = labels_nsp
-      ) %>%
-      clearControls() %>% 
-      addLegend(
-        pal = pal, 
-        values = names(risk_cols), 
-        position = "bottomright", 
-        title = paste0("Risk Stratum (", yr_end, ")")
-      )
+      clearShapes() %>% clearControls() %>%
+      addPolygons(fillColor = ~pal(get(paste0("risk_stratum_", yr_end))),
+                  weight = 1, color = "white", fillOpacity = 0.8,
+                  highlightOptions = highlightOptions(weight = 3, color = "#666", bringToFront = TRUE),
+                  label = labels_nsp) %>%
+      addLegend(pal = pal, values = names(risk_cols), position = "bottomright", title = paste0("Risk (", yr_end, ")"))
   })
   
   # Persistence Summary: BAU 
@@ -317,7 +315,7 @@ server <- function(input, output, session) {
     
     perc <- round((stuck_districts / total_districts) * 100, 1)
     
-   
+    
     HTML(paste0(
       "<div class='alert alert-danger'>",
       "<h4 class='alert-heading'>NSP Persistence</h4>",

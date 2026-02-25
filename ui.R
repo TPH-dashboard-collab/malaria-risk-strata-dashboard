@@ -23,8 +23,17 @@ ui <- fluidPage(
       # Selection of age groups
       selectInput( "age_select", "Select Age Group:", choices = NULL),
       
+      # Selection of sankey flow type
+      radioButtons("sankey_weight", "Sankey Flow Width:",
+                   choices = list("District Count" = "count", 
+                                  "Population Weight" = "nHost"),
+                   selected = "count"),
+      helpText("Only updates sankey diagrams"),
+      hr(),
+      
       # Dynamic Year Slider
       uiOutput("year_slider_ui"),
+      
       
       hr(),
       # Geographic Filters
