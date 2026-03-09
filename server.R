@@ -130,7 +130,7 @@ server <- function(input, output, session) {
     
     total_districts <- n_distinct(end_year_data$admin_2)
     
-    high_count      <- end_year_data %>% filter(risk_stratum == "High") %>%
+    high_count      <- end_year_data %>% filter(risk_stratum == "High")%>%
       n_distinct("admin_2") %>% suppressWarnings()
     
     high_count      <- sum(end_year_data$risk_stratum == "High",     na.rm = TRUE)
@@ -141,13 +141,17 @@ server <- function(input, output, session) {
     
     # Persistence
     wide_df <- prep_sankey_data(df, yrs[1]:yrs[2])
+    
     first_col <- paste0("yr_", yrs[1])
+    
     last_col  <- paste0("yr_", yrs[2])
     
     # Initialize Values
     persist_n    <- 0
     persist_perc <- 0
     improved_n   <- 0
+    declined_to_high <- 0
+    declined_to_mod  <- 0
     
     if (!is.null(wide_df) && nrow(wide_df) > 0 &&
         first_col %in% names(wide_df) && last_col %in% names(wide_df)) {
@@ -163,24 +167,38 @@ server <- function(input, output, session) {
                !!sym(last_col)  %in% c("Low", "Very Low"))  %>% nrow()
       
       persist_perc <- if (total_w > 0) round((persist_n / total_w) * 100, 1) else 0
+      
+      # Districts that worsened INTO High 
+      declined_to_high <- wide_df %>%
+        filter(!!sym(first_col) != "High",
+               !!sym(last_col)  == "High") %>% nrow()
+      
+      # Districts that worsened INTO Moderate 
+      declined_to_mod <- wide_df %>%
+        filter(!!sym(first_col) %in% c("Low", "Very Low"),
+               !!sym(last_col)  == "Moderate") %>% nrow()
     }
     
-    # mean prevalence change
+    # Mean prevalence change
     start_prev <- df %>% filter(year == yrs[1]) %>% pull(prevalenceRate)
+    
     end_prev   <- df %>% filter(year == yrs[2]) %>% pull(prevalenceRate)
+    
     med_change <- round((mean(end_prev, na.rm = TRUE) - mean(start_prev, na.rm = TRUE)) * 100, 2)
     
     list(
-      total_districts = total_districts,
-      high_count      = high_count,
-      mod_count       = mod_count,
-      low_count       = low_count,
-      persist_n       = persist_n,
-      persist_perc    = persist_perc,
-      improved_n      = improved_n,
-      med_change      = med_change,
-      yr_start        = yrs[1],
-      yr_end          = yrs[2]
+      total_districts  = total_districts,
+      high_count       = high_count,
+      mod_count        = mod_count,
+      low_count        = low_count,
+      persist_n        = persist_n,
+      persist_perc     = persist_perc,
+      improved_n       = improved_n,
+      declined_to_high = declined_to_high,
+      declined_to_mod  = declined_to_mod,
+      med_change       = med_change,
+      yr_start         = yrs[1],
+      yr_end           = yrs[2]
     )
   })
   
@@ -200,7 +218,6 @@ server <- function(input, output, session) {
                  warning = "#fff8e1",
                  success = "#e8f5e9",
                  "#e3f2fd")
-    
     border <- switch(type,
                      danger  = "#d32f2f",
                      warning = "#ffb300",
@@ -211,13 +228,11 @@ server <- function(input, output, session) {
              HTML(text))
   }
   
-  ## TAB 1: RISK MAP SUMMARY ##
+  ## TAB 1: RISK MAP SUMMARY 
   
   output$summary_maps <- renderUI({
     req(summary_stats())
-    
     s <- summary_stats()
-    
     tagList(
       fluidRow(
         column(3, make_vbox(s$total_districts, "Total Districts")),
@@ -225,7 +240,6 @@ server <- function(input, output, session) {
         column(3, make_vbox(s$mod_count,  paste0("Moderate Risk (", s$yr_end, ")"), "warning")),
         column(3, make_vbox(s$low_count,  paste0("Low / Very Low (", s$yr_end, ")"), "success"))
       ),
-      
       fluidRow(
         column(12,
                make_alert(paste0(
@@ -241,27 +255,25 @@ server <- function(input, output, session) {
   })
   
   ## TAB 2: SANKEY SUMMARY
+  
   output$summary_sankey <- renderUI({
     req(summary_stats())
-    
     s <- summary_stats()
-    
     tagList(
       fluidRow(
-        column(3, make_vbox(s$total_districts, "Districts Tracked")),
-        column(3, make_vbox(s$persist_n,   "Stayed High/Moderate", "danger")),
-        column(3, make_vbox(s$improved_n,  "Improved to Low/Very Low", "success")),
-        column(3, make_vbox(paste0(s$persist_perc, "%"), "Persistence Rate", "warning"))
+        column(3, make_vbox(s$declined_to_high, "Declined to High Risk",     "danger")),
+        column(3, make_vbox(s$declined_to_mod,  "Declined to Moderate Risk", "warning")),
+        column(3, make_vbox(s$improved_n,       "Improved to Low/Very Low",  "success")),
+        column(3, make_vbox(s$persist_n,        "Stayed High/Moderate",      "danger"))
       ),
-      
       fluidRow(
         column(12,
                make_alert(paste0(
                  "<b>Flow Summary (", s$yr_start, " → ", s$yr_end, "):</b> ",
-                 "<b>", s$improved_n, "</b> districts improved out of High/Moderate strata. ",
-                 "<b>", s$persist_n, "</b> districts (", s$persist_perc,
-                 "%) remained in elevated risk throughout the period."
-               ), type = if (s$persist_perc > 50) "danger" else "warning")
+                 "<b>", s$declined_to_high, "</b> district(s) worsened into High risk and ",
+                 "<b>", s$declined_to_mod, "</b> declined into Moderate. ",
+                 "<b>", s$improved_n, "</b> improved out of elevated strata."
+               ), type = if ((s$declined_to_high + s$declined_to_mod) > s$improved_n) "danger" else "warning")
         )
       )
     )
@@ -273,18 +285,13 @@ server <- function(input, output, session) {
   
   output$summary_heatmap <- renderUI({
     req(summary_stats(), filtered_data(), input$year_range)
-    
     s    <- summary_stats()
-    
     yrs  <- input$year_range[1]:input$year_range[2]
-    
     n_yr <- length(yrs)
     
     # Districts persistently High/Moderate for ALL years
     hm_data <- prep_heatmap_data(filtered_data(), yrs)
-    
     always_high <- 0
-    
     if (!is.null(hm_data)) {
       always_high <- hm_data %>%
         group_by(admin_2) %>%
@@ -294,11 +301,11 @@ server <- function(input, output, session) {
     
     tagList(
       fluidRow(
-        column(4, make_vbox(s$persist_n,   "Ever Elevated Districts", "danger")),
-        column(4, make_vbox(always_high,   paste0("Elevated All ", n_yr, " Years"), "danger")),
-        column(4, make_vbox(n_yr,          "Years in Period"))
+        column(3, make_vbox(s$persist_n,                "Moderate/High Districts",          "danger")),
+        column(3, make_vbox(always_high,                paste0("Elevated All ", n_yr, " Years"), "danger")),
+        column(3, make_vbox(paste0(s$persist_perc, "%"), "Persistence Rate",                "warning")),
+        column(3, make_vbox(n_yr,                       "Years in Period"))
       ),
-      
       fluidRow(
         column(12,
                make_alert(paste0(
@@ -312,26 +319,24 @@ server <- function(input, output, session) {
     )
   })
   
+  
   ## TAB 4: PERSISTENCE TABLE SUMMARY ##
   
   output$summary_persistence <- renderUI({
     req(summary_stats())
-    
     s <- summary_stats()
-    
     tagList(
       fluidRow(
         column(4, make_vbox(s$persist_n,   "Persistently Elevated Districts", "danger")),
         column(4, make_vbox(paste0(s$persist_perc, "%"), "% of All Districts", "warning")),
         column(4, make_vbox(s$improved_n,  "Districts That Improved", "success"))
       ),
-      
       fluidRow(
         column(12,
                make_alert(paste0(
                  "<b>Persistence (", s$yr_start, "–", s$yr_end, "):</b> ",
                  "Districts listed below started <em>and</em> ended in High or Moderate strata. ",
-                 "These <b>", s$persist_n, "</b> districts are the most challenging to intervention efforts."
+                 "These <b>", s$persist_n, "</b> districts should be prioritised for intensified intervention."
                ), type = "danger")
         )
       )
@@ -451,7 +456,7 @@ server <- function(input, output, session) {
   # Logic to update proxies (runs whenever data/years change)
   # Update Colors, Labels, and Legends - triggers on ANY filter change
   observe({
-
+    
     req(filtered_data(), input$year_range)
     
     # PROTECTIVE CHECK: If filters leave no data, don't update the map 
