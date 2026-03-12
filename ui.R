@@ -113,10 +113,28 @@ ui <- fluidPage(
           hr(),
           card(
             full_screen = TRUE,
-            card_header("Risk Strata Movement (Start → End)"),
+            card_header(
+              div(
+                style = "display:flex; justify-content:space-between; align-items:center; width:100%;",
+                span("Risk Strata Movement (Start → End)"),
+                div(
+                  style = "display:flex; align-items:center; gap:8px;",
+                  tags$label("View mode:",
+                             style = "font-size:0.85rem; margin-bottom:0; white-space:nowrap; color:#495057;"),
+                  radioButtons(
+                    "sankey_mode",
+                    label    = NULL,
+                    choices  = c("Start → End" = "endpoints", "Year by Year" = "stepwise"),
+                    selected = "endpoints",
+                    inline   = TRUE
+                  )
+                )
+              )
+            ),
             plotlyOutput("sankey_main", height = "500px")
           )
         ),
+        
         
         # Tab 3: Persistence Heatmap 
         nav_panel(

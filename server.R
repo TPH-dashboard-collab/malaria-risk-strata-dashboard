@@ -348,49 +348,36 @@ server <- function(input, output, session) {
   # Function to generate the Sankey data structure and plot
   render_sankey <- function(data_reactive, yrs) {
     
-    start_year <- yrs[1]
+    # Switch between start→end only, or full year-by-year steps
+    selected_years <- if (!is.null(input$sankey_mode) && input$sankey_mode == "stepwise") {
+      yrs[1]:yrs[2]           # all intermediate years
+    } else {
+      c(yrs[1], yrs[2])       # just endpoints (default)
+    }
     
-    end_year   <- yrs[2]
-    
-    # Pass input$sankey_weight to the function
-    s_list <- generate_sankey_data(
-      data_reactive(),
-      selected_years = c(start_year, end_year),
-      weight_type = input$sankey_weight
-    )
-    
-    # Determine the label based on weight type
+    s_list     <- generate_sankey_data(data_reactive(), selected_years, weight_type = input$sankey_weight)
     unit_label <- ifelse(input$sankey_weight == "nHost", "People", "Districts")
     
     plot_ly(
       type = "sankey", orientation = "h",
       node = list(
-        label = s_list$nodes$label,
-        color = s_list$nodes$color,
+        label      = s_list$nodes$label,
+        color      = s_list$nodes$color,
         pad = 15, thickness = 20,
-        
-        # Pass the total_val to customdata
         customdata = round(s_list$nodes$total_val),
-        
-        # Use customdata in the hovertemplate and hide "Incoming/Outgoing flows" 
         hovertemplate = paste0("%{label}: %{customdata} ", unit_label, "<extra></extra>")
       ),
       link = list(
-        source = s_list$links$source,
-        target = s_list$links$target,
-        value = s_list$links$value,
-        color = s_list$links$color,
-        
-        # Show the flow value clearly
+        source        = s_list$links$source,
+        target        = s_list$links$target,
+        value         = s_list$links$value,
+        color         = s_list$links$color,
         hovertemplate = paste0("Flow: %{value} ", unit_label, "<extra></extra>")
       )
     ) %>%
-      layout(
-        font = list(size = 12),
-        margin = list(l = 50, r = 50, b = 20, t = 40)
-      )
+      layout(font   = list(size = 12),
+             margin = list(l = 50, r = 50, b = 20, t = 40))
   }
-  
   
   output$sankey_main <- renderPlotly({
     req(filtered_data())
